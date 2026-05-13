@@ -3,7 +3,7 @@ from torch_geometric.data import Data
 from torch_geometric.utils import to_undirected
 labels = pd.read_csv("/csl/users/2026lzhu/LABELS.csv").set_index("Subject")
 labels = labels[~labels.index.duplicated(keep='first')]
-dir_list= os.listdir("/csl/users/2026lzhu/CORT_SURFACES3")
+dir_list = os.listdir("/csl/users/2026lzhu/CORT_SURFACES3")
 direc = "/csl/users/2026lzhu/CORT_SURFACES3"
 from scipy.ndimage import gaussian_filter
 import torch

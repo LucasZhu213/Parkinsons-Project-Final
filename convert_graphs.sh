@@ -10,11 +10,9 @@
 #SBATCH --error=/csl/users/2026lzhu/fastsurfer_%j.err
 
 
-pixi init gcn_workspacea
-rm -rf ~/.cache/rattler/cache
-rm -rf ~/.cache/pixi
-cp convert_scan_to_graph.py gcn_workspacea
-cd gcn_workspacea
+pixi init gcn_workspace
+cp convert_scan_to_graph.py gcn_workspace
+cd gcn_workspace
 pixi add "python==3.13"
 pixi add --pypi "nibabel"
 pixi add --pypi "pandas"

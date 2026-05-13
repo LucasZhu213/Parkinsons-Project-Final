@@ -12,8 +12,8 @@
 
 export OMP_NUM_THREADS=8
 
-pixi init gcn_workspacea
-cp convert_nii_to_3array.py gcn_workspacea
+pixi init 3dcnn_workspace
+cp convert_nii_to_3array.py 3dcnn_workspace
 cd gcn_workspacea
 pixi add "python==3.13"
 pixi add --pypi "nibabel"

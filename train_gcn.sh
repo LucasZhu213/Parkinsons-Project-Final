@@ -13,6 +13,7 @@
 export OMP_NUM_THREADS=8
 
 pixi init gcn_workspace
+cp gcn_model1.py gcn_workspace
 cd gcn_workspace
 pixi add "python==3.13"
 pixi add --pypi "torch"
@@ -20,4 +21,4 @@ pixi add --pypi "torch-geometric"
 pixi add --pypi "pandas"
 pixi add --pypi "scikit-learn"
 echo "HELLO"
-pixi run python prototype_gcnP.py
+pixi run python gcn_model1.py
