@@ -1,6 +1,6 @@
 import subprocess, os, re, shutil
 
-paths = open("scanlist1.txt").read().splitlines()
+paths = open("scanlist.txt").read().splitlines()
 paths = [p.strip() for p in paths]
 uid = os.getuid()
 gid = os.getgid()
