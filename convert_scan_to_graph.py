@@ -3,8 +3,8 @@ from torch_geometric.data import Data
 from torch_geometric.utils import to_undirected
 labels = pd.read_csv("/csl/users/2026lzhu/LABELS.csv").set_index("Subject")
 labels = labels[~labels.index.duplicated(keep='first')]
-dir_list= os.listdir("/csl/users/2026lzhu/CORT_SURFACES")
-direc = "/csl/users/2026lzhu/CORT_SURFACES"
+dir_list= os.listdir("/csl/users/2026lzhu/CORT_SURFACES3")
+direc = "/csl/users/2026lzhu/CORT_SURFACES3"
 from scipy.ndimage import gaussian_filter
 import torch
 import numpy as np
@@ -151,7 +151,7 @@ for dr in dir_list:
             full_graph_edge_index = torch.cat([ldata.edge_index, rdata.edge_index+offset], dim=1)
             data = Data(x=full_graph_x, edge_index=full_graph_edge_index)
             print(data.num_nodes, data.num_edges)
-            torch.save(data, f"/csl/users/2026lzhu/PRELIM_GRAPHS/{dr}_{label}_1.pt")
+            #torch.save(data, f"/csl/users/2026lzhu/PRELIM_GRAPHS/{dr}_{label}_1.pt")
     elif label == 0: 
         for i in range(2):
             lnoise = np.random.normal(0, 0.05, size=lvertices.shape)
@@ -187,7 +187,7 @@ for dr in dir_list:
             full_graph_edge_index = torch.cat([ldata.edge_index, rdata.edge_index+offset], dim=1)
             data = Data(x=full_graph_x, edge_index=full_graph_edge_index)
             print(data.num_nodes, data.num_edges)
-            torch.save(data, f"/csl/users/2026lzhu/PRELIM_GRAPHS/{dr}_{label}_{i+1}.pt")
+            #torch.save(data, f"/csl/users/2026lzhu/PRELIM_GRAPHS/{dr}_{label}_{i+1}.pt")
     elif label == 2:
         for i in range(1):
             lnoise = np.random.normal(0, 0.05, size=lvertices.shape)

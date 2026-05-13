@@ -10,7 +10,7 @@ from keras.layers import Dropout, Dense, Activation, GlobalAveragePooling3D
 from keras.models import Model
 from keras.src.utils import summary_utils
 use_weights = 'imagenet'
-shape_size = (96, 128, 128, 3)
+shape_size = (96, 96, 96, 3)
 backbone = 'resnet18'
 num_classes = 2
 batch_size_train = 12
