@@ -3,6 +3,15 @@ TJHSST Senior Research Project - Diagnosing Parkinson's By Applying Graph Neural
 
 Parkinson’s Disease (PD) is a progressive neurodegenerative disorder and the second most common neurodegenerative disease in the elderly population.  While it is characterized by degradation of dopaminergic neurons in the Substantia nigra, it is primarily diagnosed by motor symptoms and ruling out contradictory symptoms; this method is fairly error-prone, especially for early diagnosis. Machine learning methods have been applied to medical imaging to diagnose Parkinson's; however, one biomarker not yet explored is regional cortical thinning, which has certain advantages over past methodologies, which focused on volumetrics. By extracting cortical surfaces from MRI, converting the geometric mesh to a graph, and applying Graph Neural Networks, we may improve early-stage discrimination. These models were compared against a logistic regression baseline trained on clinical evaluation data, as well as a combined multimodal approach integrating both models. The GNN-based models alone demonstrated limited predictive performance but showed relative sensitivity to intermediate disease stages. Logistic regression achieved strong overall classification performance, while the combined model improved class balance, particularly for prodromal cases. These results suggest that graph-based structural representations capture complementary information related to early disease progression but are insufficient as standalone predictors. This multimodal approach may support more informed clinical assessment and has potential implications for earlier detection and improved disease management, where earlier diagnosis is associated with improved long-term outcomes.
 
+## Required packages & libraries
+Python: Scipy, Scikit-Learn, Scikit-Image, Pandas, Numpy, MatPlotLib
+
+Tensorflow, Keras, classification-models-3D
+
+PyTorch, PyTorch Geometric
+
+All are available on pip
+
 ## Running surface extraction
 Sign in to OSG access point (instructions here: https://osg-htc.org/services/access-point.html)
 
@@ -42,7 +51,7 @@ sbatch train_gcn.sh
 ```
 You may need to change the ```gcn_model1.py``` to the specific model you want to run inside the script.
 
-The script will also be copied to ```gcn_workspace``` and the best model(s) based on accuracy will also be saved inside of the gcn_workspace.
+The script will also be copied to ```gcn_workspace``` and the best model(s) based on accuracy will also be saved inside of the gcn_workspace, at ```best_graph_gcn_model#.pt```.
 
 ## Running 3D model creation & training pre-trained 3D-CNN
 To convert the .nii.gz scans to 3D volumes of the same orientation and dimensions, run ```convert_nii_to_3array.py``` via ```conversion.sh```:
@@ -63,4 +72,4 @@ Training the 3D-CNN is also fairly simple - just run the ```train_3dcnn.sh scrip
 ```
 sbatch train_3dcnn.sh
 ```
-The script will also be copied into ```3dcnn_workspace``` and the best model based on accuracy and 'checkpoint' models at each epoch will also be saved.
+The script will also be copied into ```3dcnn_workspace``` and the best model based on accuracy and 'checkpoint' models at each epoch will also be saved, in ```best_3d_cnn_model.keras``` and ```3d_cnn_temp_model.keras```, respectively.
