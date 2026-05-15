@@ -172,7 +172,7 @@ for epoch in range(1, 101):
     acc_train, recall_0_train, recall_1_train, recall_2_train, conf_matrix_train = test(model, train_loader, device)
     if acc > max_acc: 
         max_acc = acc   
-        save_path = "best_graph_gcn_modelL.pt"
+        save_path = "best_graph_gcn_model2.pt"
         torch.save(model.state_dict(), save_path)
         print(f"Saved best model at epoch {epoch} with test accuracy = {acc:.4f}")
     print(f"Epoch {epoch:03d}, Loss={loss:.4f}, Acc={acc:.4f}, AccTrain={acc_train:.4f}")

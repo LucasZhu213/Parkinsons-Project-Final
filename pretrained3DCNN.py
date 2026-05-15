@@ -42,7 +42,8 @@ def augment(volume, max_rotation=10):
         volume = rotate(volume, angle, axes=(1, 2), reshape=False, order=1, mode='nearest')
     if random.random() < 0.5:
         volume *= np.random.uniform(0.9, 1.1)
-    volume += np.random.normal(0, 0.01, volume.shape)
+    if random.random() < 0.5:
+        volume += np.random.normal(0, 0.01, volume.shape)
     volume = (volume - np.mean(volume)) / (np.std(volume)+ 1e-8)
     return volume
 
@@ -83,11 +84,11 @@ def batch_generator(batch_size, models, answers, preprocess_input):
         answ_list = []
         if iterator+batch_size < len(models):
             for i in range(iterator, iterator+batch_size):
-                img, answ = models[i], answers[i]
+                img, answ = augment(models[i]), answers[i]
                 image_list.append(img); answ_list.append(answ)
         else:
             for i in range(iterator, len(models)):
-                img, answ = models[i], answers[i]
+                img, answ = augment(models[i]), answers[i]
                 image_list.append(img); answ_list.append(answ)
             iterator = 0
 
