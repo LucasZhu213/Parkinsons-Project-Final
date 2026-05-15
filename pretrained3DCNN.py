@@ -117,11 +117,11 @@ optim = Adam(learning_rate=learning_rate)
 loss_to_use = 'binary_crossentropy'
 model.compile(optimizer=optim, loss=loss_to_use, metrics=['acc',])
 
-cache_model_path = '{}_temp.keras'.format(backbone)
-best_model_path = '{}'.format(backbone) + '-{val_loss:.4f}-{epoch:02d}.keras'
+cache_model_path = f"3d_cnn_temp_model.keras"
+best_model_path = f"best_3d_cnn_model.keras"
 callbacks = [
-    ModelCheckpoint(cache_model_path, monitor='val_loss', verbose=0),
-    ModelCheckpoint(best_model_path, monitor='val_loss', verbose=0),
+    ModelCheckpoint(cache_model_path, monitor='val_loss', save_best_only=False, verbose=0),
+    ModelCheckpoint(best_model_path, monitor='val_loss', save_best_only=True, verbose=0),
     ReduceLROnPlateau(monitor='val_loss', factor=0.95, patience=3, min_lr=1e-9, min_delta=1e-8, verbose=1, mode='min'),
     CSVLogger('history_{}_lr_{}.csv'.format(backbone, learning_rate), append=True),
     EarlyStopping(monitor='val_loss', patience=patience, verbose=0, mode='min'),
@@ -137,6 +137,7 @@ gen_valid = batch_generator(
     X_val, y_val,
     preprocess_input
 )
+
 history = model.fit(
     gen_train,
     epochs=epochs,

@@ -1,0 +1,18 @@
+container_image = /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-freesurfer:latest
+
+executable = freesurfer_run.sh
+transfer_input_files = /home/lucas.zhu/PPMI_SCANS/$(scan), license.txt
+arguments = $(scan)
+
+log = hello-ospool_$(Cluster)_$(Process).log
+error = hello-ospool_$(Cluster)_$(Process).err
+output = hello-ospool_$(Cluster)_$(Process).out
+
++JobDurationCategory = "Long"
+
+request_cpus = 4
+request_memory = 15GB
+request_disk = 40GB
+
+
+queue scan from scanlist.txt
