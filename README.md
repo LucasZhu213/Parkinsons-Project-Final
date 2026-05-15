@@ -24,7 +24,7 @@ Create a directory titled '''PRELIM_GRAPHS before running the script
 The script will additionally augment the graph dataset, and print the # of nodes and edges in each graph
 A folder titled '''gcn_workspace should be created, where the script is also copied into
 
-Training the graph neural network is straighforward - just run the '''train_gcn.sh script 
+Training the graph neural network is straighforward - just run the '''train_gcn.sh script:
 '''
 sbatch train_gcn.sh
 
@@ -44,7 +44,7 @@ sbatch volume_augment.sh
 Approximately ~3000 files should be created
 A folder titled '''3dcnn_workspace should be created, where both scripts are copied into
 
-Training the 3D-CNN is also fairly simple - just run the '''train_3dcnn.sh script :
+Training the 3D-CNN is also fairly simple - just run the '''train_3dcnn.sh script:
 '''
 sbatch train_3dcnn.sh
 
