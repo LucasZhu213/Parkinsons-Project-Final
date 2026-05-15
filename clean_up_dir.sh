@@ -1,4 +1,5 @@
 arr=(*.tar.gz)
+cd CORT_SURFACES
 for i in {0..586}
 do
     file="${arr[i]}"
