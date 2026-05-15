@@ -61,4 +61,4 @@ Training the 3D-CNN is also fairly simple - just run the ```train_3dcnn.sh scrip
 ```
 sbatch train_3dcnn.sh
 ```
-The script will also be copied into '''3dcnn_workspace and the best model based on accuracy and 'checkpoint' models at each epoch will also be saved
+The script will also be copied into ```3dcnn_workspace``` and the best model based on accuracy and 'checkpoint' models at each epoch will also be saved.
