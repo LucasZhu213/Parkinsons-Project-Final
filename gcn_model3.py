@@ -200,7 +200,7 @@ num_classes = 3
 model = SimpleNN()
 gcn_model = GraphGCN(in_channels=7,
                   num_classes=num_classes).to(device)
-gcn_model.load_state_dict(torch.load("best_graph_gcn_modelM.pt"))
+gcn_model.load_state_dict(torch.load("best_graph_gcn_model3*.pt"))
 lr_model = joblib.load("/csl/users/2026lzhu/lr_model.joblib")
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 lr_info = pd.read_csv("/csl/users/2026lzhu/logregimptest.csv"); lr_info = pd.concat([lr_info, pd.read_csv("/csl/users/2026lzhu/logregimptrain.csv")])
