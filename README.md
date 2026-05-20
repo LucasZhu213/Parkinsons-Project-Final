@@ -51,7 +51,7 @@ sbatch train_gcn.sh
 ```
 You may need to change the ```gcn_model1.py``` to the specific model you want to run inside the script.
 
-The script will also be copied to ```gcn_workspace``` and the best model(s) based on accuracy will also be saved inside of the gcn_workspace, at ```best_graph_gcn_model#.pt```.
+The script will also be copied to ```gcn_workspace``` and the best model(s) based on accuracy will also be saved inside of ```gcn_workspace```, at ```best_graph_gcn_model#.pt```.
 
 ## Running 3D model creation & training pre-trained 3D-CNN
 To convert the .nii.gz scans to 3D volumes of the same orientation and dimensions, run ```convert_nii_to_3array.py``` via ```conversion.sh```:
