@@ -5,7 +5,7 @@ from scipy.ndimage import rotate, zoom
 x = []
 x_dir, cur_filename = "/csl/users/2026lzhu/3D_VOLUMES", 382637
 subj_list = open("/csl/users/2026lzhu/scanlist.txt").readlines()
-labels = pd.read_csv("LABELS.csv").set_index("Subject")
+labels = pd.read_csv("/csl/users/2026lzhu/LABELS.csv").set_index("Subject")
 labels = labels[~labels.index.duplicated(keep='first')]
 np.random.seed(42)
 def augment(volume, max_rotation=10):

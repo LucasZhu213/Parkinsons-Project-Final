@@ -23,13 +23,13 @@ epochs = 50
 steps_per_epoch = 100
 validation_steps = 20
 dropout_val = 0.1
-labels = pd.read_csv("LABELS.csv").set_index("Subject")
+labels = pd.read_csv("/csl/users/2026lzhu/LABELS.csv").set_index("Subject")
 labels = labels[~labels.index.duplicated(keep='first')]
 random.seed(42)
 np.random.seed(42)
 
 models, answers = [], []
-for file in os.listdir("3D_VOLUMES"):
+for file in os.listdir("/csl/users/2026lzhu/3D_VOLUMES"):
     subjnum = re.search("^\d+", file).group()
     models.append(np.load(file))
     answers.append({"Control":0, "Prodromal":1, "PD":2}[labels.loc[subjnum]["Group"]])

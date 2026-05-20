@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 import joblib
 print("CUDA available:", torch.cuda.is_available(), flush=True)
 print("Num devices:", torch.cuda.device_count(), flush=True)
-labels = pd.read_csv("LABELS.csv").set_index("Subject")
+labels = pd.read_csv("/csl/users/2026lzhu/LABELS.csv").set_index("Subject")
 labels = labels[~labels.index.duplicated(keep='first')]
 if torch.cuda.is_available():
     print("Device name:", torch.cuda.get_device_name(0), flush=True)
