@@ -15,7 +15,7 @@ All are available on pip
 This project is intended to be run on a cluster relying on SLURM and Pixi (for packages); if run elsewhere, will likely error.
 
 ## General Setup Instructions
-In each file there are paths pointing to ```/csl/users/2026lzhu/...``` please change this to whatever is the **ABSOLUTE** path of the directory you have placed these in. ```convert_dcm_to_nii.py``` was used originally to convert the raw DiCOM files downloaded from PPMI to NiFTi format; the NiFTi dataset has been uploaded for your convenience. ```port_100.sh``` was used to upload the directory to GitHub.
+In each file there are paths pointing to ```/csl/users/2026lzhu/...``` please change this to whatever is the **ABSOLUTE** path of the directory you have placed these in. ```convert_dcm_to_nii.py``` was used originally to convert the raw DiCOM files downloaded from PPMI to NiFTi format; the NiFTi dataset has been uploaded for your convenience. ```port_100.sh``` was used to upload the directory to GitHub. ```data_analysis.py``` was used to create the graphs in the final paper + presentation.
 
 ## Running surface extraction
 Sign in to OSG access point (instructions here: https://osg-htc.org/services/access-point.html). FreeSurfer is installed by default on the Open Science Grid; so, no installation necessary. Upload ```PPMI_SCANS```, ```freesurfer_run.sh```, ```freesurfer.sub```, ```clean_up_dir.sh``` and ```mvfiles.sh``` to OSG.
