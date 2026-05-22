@@ -18,20 +18,19 @@ This project is intended to be run on a cluster relying on SLURM and Pixi (for p
 In each file there are paths pointing to ```/csl/users/2026lzhu/...``` please change this to whatever is the **ABSOLUTE** path of the directory you have placed these in. ```convert_dcm_to_nii.py``` was used originally to convert the raw DiCOM files downloaded from PPMI to NiFTi format; the NiFTi dataset has been uploaded for your convenience. ```port_100.sh``` was used to upload the directory to GitHub. ```data_analysis.py``` was used to create the graphs in the final paper + presentation.
 
 ## Running surface extraction
-Sign in to OSG access point (instructions here: https://osg-htc.org/services/access-point.html). FreeSurfer is installed by default on the Open Science Grid; so, no installation necessary. Upload ```PPMI_SCANS```, ```freesurfer_run.sh```, ```freesurfer.sub```, ```clean_up_dir.sh``` and ```mvfiles.sh``` to OSG.
+Sign in to OSG access point (instructions here: https://osg-htc.org/services/access-point.html). FreeSurfer is installed by default on the Open Science Grid; so, no installation necessary. Upload ```PPMI_SCANS```, ```freesurfer_run.sh```, ```freesurfer.sub```, ```scanlist.txt```, ```license.txt```, ```clean_up_dir.sh``` and ```mvfiles.sh``` to OSG. ```license.txt``` contains the FreeSurfer license, while ```scanlist.txt``` contains a list of each filename in ```PPMI_SCANS```.
 
-Run freesurfer.sub with 
+```freesurfer.sub``` is a Condor job-submission script, that repeatedly runs ```freesurfer_run.sh``` script on each file in ```PPMI_SCANS```, which applies the recon-all pipeline to said file. Run ```freesurfer.sub``` with 
 ```
 condor_submit freesurfer.sub
 ```
-Around ~100 files may fail when extracting; this is normal. The resulting patient folders should appear in your working directory as ```.tar.gz``` files. The folders are too large to move directly onto personal computer or cluster; so, first make a set of folders (recommended 3). Then, use mvfiles.sh and shift each batch of folders into the specific folders you have created (just change "CORT_SURFACES2" to whichever folder name you created). Then run ```clean_up_dir.sh``` (change "CORT_SURFACES" to the name of each of the folders you have created) to remove non-surface information and further reduce memory load.
+Around ~100 files may fail when extracting; this is normal. The resulting patient folders should appear in your working directory as ```.tar.gz``` files. The folders are too large to move directly onto personal computer or cluster; so, first make a set of folders (recommended 3). Then, use ```mvfiles.sh``` and shift each batch of folders into the specific folders you have created (just change "CORT_SURFACES2" to whichever folder name you created). Then run ```clean_up_dir.sh``` (change "CORT_SURFACES" to the name of each of the folders you have created) to remove non-surface information and further reduce memory load.
 
 ## Training Logistic Regression
-Run ```logreg.py``` to train the logistic regression model based on the MDS-UPDRS data (from the 3 csv files). Uncomment the section that merges, preprocesses and one-hot encodes the dataset. It should take a few minutes to run, and the final result will be saved in ```lr_model.joblib```. Before training ```gcn_model3.py```, you will need to run ```logreg.py```, and you may need to uncomment the section that trains the initial GCN+GraphNorm architecture. 
+Run ```logreg.py``` to train the logistic regression model based on the MDS-UPDRS data (from the 3 ```.csv``` files). Uncomment the section that merges, preprocesses and one-hot encodes the dataset. It should take a few minutes to run, and the final result will be saved in ```lr_model.joblib```. Before training ```gcn_model3.py```, you will need to run ```logreg.py```, and you may need to uncomment the section that trains the initial GCN+GraphNorm architecture. 
 
 ## Running graph creation & training graph neural network
 After downloading the surface data, run the ```convert_scan_to_graph.py``` script by running the ```convert_graphs.sh```:
-
 ```
 sbatch convert_graphs.sh
 ```
@@ -56,7 +55,7 @@ sbatch volume_augment.sh
 ```
 Approximately ~3000 files should be created. The script will also be copied into ```3dcnn_workspace```.
 
-Training the 3D-CNN is also fairly simple - just run the ```train_3dcnn.sh script```:
+Training the 3D-CNN is also fairly simple - just run the ```train_3dcnn.sh``` script:
 ```
 sbatch train_3dcnn.sh
 ```
